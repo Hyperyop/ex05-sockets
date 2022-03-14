@@ -59,7 +59,13 @@ int main(int argc, char* argv[]) {
     }
     char *response;
     // Now parse the responses
+    int tries=0;
     while(test_for_redirect(&reply)){
+        tries++;
+        if(tries>=10){
+            fprintf(stderr, "Redirection depth exceeded (10) \n");
+	        return 2;
+        }
         response = read_http_reply(&reply);
         char *tmp;
         tmp = next_line(response,strlen(response));
