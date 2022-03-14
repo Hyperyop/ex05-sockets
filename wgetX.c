@@ -139,9 +139,8 @@ int download_page(url_info *info, http_reply *reply) {
 	// return -1;
     // }
     int mysocket,len,s;
-    char port[5];
+    char port[6];
     snprintf(port,6,"%d",info->port);
-    printf("%s",port);
     struct addrinfo hints;
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_UNSPEC;    /* Allow IPv4 or IPv6 */
