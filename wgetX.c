@@ -139,12 +139,15 @@ int download_page(url_info *info, http_reply *reply) {
 	// return -1;
     // }
     int mysocket,len,s;
+    char port[5];
+    snprintf(port,6,"%d",info->port);
+    printf("%s",port);
     struct addrinfo hints;
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_UNSPEC;    /* Allow IPv4 or IPv6 */
     hints.ai_socktype = SOCK_STREAM ; /* stream socket */ 
     struct addrinfo *result,*rp;
-    s = getaddrinfo(info->host, info->protocol,&hints, &result); //this block was inspired by the man example entry
+    s = getaddrinfo(info->host, port,&hints, &result); //this block was inspired by the man example entry
     if (s != 0) {
     fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(s));
     exit(EXIT_FAILURE);
